@@ -25,7 +25,8 @@ Course project of 'Getting and Cleaning Data' in Coursera
     - walkingDownstairs: walking downstairs
     - sitting: sitting
 
-*Below variables indicates the actual experimental value - value type is numeric.*
+*Below variables indicates the actual experimental value.*
+
 * Mean of tBodyAcc for X
 * Mean of tBodyAcc for Y
 * Mean of tBodyAcc for Z
@@ -92,4 +93,7 @@ Course project of 'Getting and Cleaning Data' in Coursera
 * Standard deviation of fBodyBodyGyroMag
 * Mean of fBodyBodyGyroJerkMag
 * Standard deviation of fBodyBodyGyroJerkMag
+  - Numeric values
+  - Mean or standard deviation of the certain feature
+  - It can be separated by 3 axis - X, Y and Z
 
