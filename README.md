@@ -24,6 +24,7 @@ Course project of 'Getting and Cleaning Data' in Coursera
     - walkingUpstairs: walking upstairs
     - walkingDownstairs: walking downstairs
     - sitting: sitting
+
 *Below variables indicates the actual experimental value - value type is numeric.*
 * Mean of tBodyAcc for X
 * Mean of tBodyAcc for Y
