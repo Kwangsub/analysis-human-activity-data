@@ -10,12 +10,13 @@ Course project of 'Getting and Cleaning Data' in Coursera
 * run_analysis.R: The code file to retrieve raw data and make a tidy data.
 
 ## How to obtain a tidy data set
+*It assumes the root of raw data is located in the current working directory.*
 1. Open run_analysis.R
 2. Run the whole script of the opened file
 3. A tidy data set was stored into the data frame named 'tidyData'
 
 ## Progress of making a tidy data set
-1. Read raw data from the file. It assumes the root of the source files is located in the current working directory.
+1. Read raw data from the file.
 2. Merge the training and test set.
 3. Extract the certain features with mean or standard deviation in order to reduce excessive experimental data.
 4. Rename the label with descriptive name.

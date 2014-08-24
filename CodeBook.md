@@ -5,18 +5,15 @@ Describes the variables of the tidy data set stored in 'tidyData'.
 It has 68 attributes for each rows.
 
 1. Subject
-  - The subject who performed the activity for each sample.
-  - Range: 1 to 30
+  - The subject who performed the activity for each sample. It is distinguished by number.
+  - Value range: 1 to 30
 2. Activity
-  - Human activity
+  - Human activity by subject
   - Available values
-    - walking: walking
-    - walkingUpstairs: walking upstairs
-    - walkingDownstairs: walking downstairs
-    - sitting: sitting
-
-*Below variables indicates the actual experimental value.*
-
+    - walking: indicates the subject was walking
+    - walkingUpstairs: indicates the subject was walking upstairs
+    - walkingDownstairs: indicates the subject was walking downstairs
+    - sitting: indicates the subject was sitting
 3. Mean of tBodyAcc for X
 4. Mean of tBodyAcc for Y
 5. Mean of tBodyAcc for Z
