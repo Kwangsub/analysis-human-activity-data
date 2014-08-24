@@ -12,9 +12,9 @@ getActivity <- function() {
   # Read activity and return a data frame of activity
   # Read activity labels
   activity <- read.delim("./activity_labels.txt", sep="", header=FALSE)
-  colnames(activity) <- c("index", "name")
+  colnames(activity) <- c("activityIndex", "activityName")
   # Convert underscore & upper case to camel case
-  activity$name = sub("_([a-z])", "\\U\\1", tolower(activity$name), perl=TRUE)
+  activity$activityName = sub("_([a-z])", "\\U\\1", tolower(activity$activityName), perl=TRUE)
   activity
 }
 
@@ -36,14 +36,20 @@ getExperimentData <- function(features) {
 
 	# Construct table
 	data <- cbind(x, subject, y)
-	colnames(data) <- c(features, c("subject", "activity"))
+	colnames(data) <- c(features, c("subject", "activityNum"))
 	data
 }
 
 features <- getFeatures()
 activity <- getActivity()
+
+# Step 1: Get data and merge the training and the test sets
+#         and create one data set
 data <- getExperimentData(features)
 
-# Extract the mean and standard deviation measurements
+# Step 2: Extract the mean and standard deviation measurements
 selectedFeatures <- features[grep("(mean|std)\\(\\)", features)]
-reducedData <- subset(data, select=c("subject", "activity", selectedFeatures))
+reducedData <- subset(data, select=c("subject", "activityNum", selectedFeatures))
+
+# Step 3: Use descriptive activity names to name the activities
+tinyData <- merge(reducedData, activity, by.x = "activityNum", by.y = "activityIndex")
