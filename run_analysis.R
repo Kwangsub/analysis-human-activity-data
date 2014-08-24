@@ -77,7 +77,7 @@ descData <- merge(reducedData, activity, by.x = "activityNum", by.y = "activityI
 # Step 4: Appropriately labels the data set with descriptive variable names
 descLabel <- sapply(selectedFeatures, getAppropriateLabel)
 descData <- subset(descData, select=c("subject", "activityName", selectedFeatures))
-colnames(descData) <- c("subject", "activity", descLabel)
+colnames(descData) <- c("Subject", "Activity", descLabel)
 
 # Step 5: Creates a second, independent tidy data set
 #         with the average of each variable for each activity and each subject
@@ -86,7 +86,7 @@ secondData <- aggregate(secondData, by=list(secondData$subject, secondData$activ
 secondData <- merge(secondData, activity, by.x = "activityNum", by.y = "activityIndex")
 
 tidyData <- subset(secondData, select=c("subject", "activityName", selectedFeatures))
-colnames(tidyData) <- c("subject", "activity", descLabel)
+colnames(tidyData) <- c("Subject", "Activity", descLabel)
 
 # A tidy data frame was stored into 'tidyData'.
 # It can be exported to the file as below.
