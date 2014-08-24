@@ -40,6 +40,26 @@ getExperimentData <- function(features) {
 	data
 }
 
+getAppropriateLabel <- function(x) {
+  # Appropriate pattern: func-(mean|std)-(X|Y|Z) -> mean|std of func for X|Y|Z
+  src <- strsplit(x, "-")[[1]]
+  label <- ""
+  if (length(src) > 1) {
+    if (length(grep("mean", src[[2]])) > 0) {
+      label <- "Mean of"
+    } else if (length(grep("std", src[[2]])) > 0) {
+      label <- "Standard deviation of"
+    }
+    label <- paste(label, src[[1]])
+    if (length(src) > 2) {
+      label <- paste(label, "for", src[[3]]);
+    }
+  } else {
+    label <- x
+  }
+  label
+}
+
 features <- getFeatures()
 activity <- getActivity()
 
@@ -53,3 +73,8 @@ reducedData <- subset(data, select=c("subject", "activityNum", selectedFeatures)
 
 # Step 3: Use descriptive activity names to name the activities
 tinyData <- merge(reducedData, activity, by.x = "activityNum", by.y = "activityIndex")
+
+# Step 4: Appropriately labels the data set with descriptive variable names
+descLabel <- sapply(selectedFeatures, getAppropriateLabel)
+tinyData <- subset(tinyData, select=c("subject", "activityName", selectedFeatures))
+colnames(tinyData) <- c("subject", "activity", descLabel)
