@@ -72,9 +72,22 @@ selectedFeatures <- features[grep("(mean|std)\\(\\)", features)]
 reducedData <- subset(data, select=c("subject", "activityNum", selectedFeatures))
 
 # Step 3: Use descriptive activity names to name the activities
-tinyData <- merge(reducedData, activity, by.x = "activityNum", by.y = "activityIndex")
+descData <- merge(reducedData, activity, by.x = "activityNum", by.y = "activityIndex")
 
 # Step 4: Appropriately labels the data set with descriptive variable names
 descLabel <- sapply(selectedFeatures, getAppropriateLabel)
-tinyData <- subset(tinyData, select=c("subject", "activityName", selectedFeatures))
-colnames(tinyData) <- c("subject", "activity", descLabel)
+descData <- subset(descData, select=c("subject", "activityName", selectedFeatures))
+colnames(descData) <- c("subject", "activity", descLabel)
+
+# Step 5: Creates a second, independent tidy data set
+#         with the average of each variable for each activity and each subject
+secondData <- reducedData
+secondData <- aggregate(secondData, by=list(secondData$subject, secondData$activityNum), mean)
+secondData <- merge(secondData, activity, by.x = "activityNum", by.y = "activityIndex")
+
+tidyData <- subset(secondData, select=c("subject", "activityName", selectedFeatures))
+colnames(tidyData) <- c("subject", "activity", descLabel)
+
+# A tidy data frame was stored into 'tidyData'.
+# It can be exported to the file as below.
+# > write.table(tidyData, file="tidy-data.txt", row.name=FALSE)
