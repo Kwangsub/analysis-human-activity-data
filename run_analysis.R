@@ -13,6 +13,9 @@ getActivity <- function() {
   # Read activity labels
   activity <- read.delim("./activity_labels.txt", sep="", header=FALSE)
   colnames(activity) <- c("index", "name")
+  # Convert underscore & upper case to camel case
+  activity$name = sub("_([a-z])", "\\U\\1", tolower(activity$name), perl=TRUE)
+  activity
 }
 
 getExperimentData <- function(features) {
