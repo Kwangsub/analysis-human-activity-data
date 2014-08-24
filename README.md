@@ -11,6 +11,7 @@ Course project of 'Getting and Cleaning Data' in Coursera
 
 ## How to obtain a tidy data set
 *It assumes the root of raw data is located in the current working directory.*
+
 1. Open run_analysis.R
 2. Run the whole script of the opened file
 3. A tidy data set was stored into the data frame named 'tidyData'
